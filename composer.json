@@ -1,0 +1,10 @@
+{
+    "name": "thomas-v/form-lib",
+    "type": "library",
+    "autoload": {
+        "psr-4" : {
+            "App\\FormLib\\":"vendor/FormLib"
+        }
+    },
+    "require": {}
+}
