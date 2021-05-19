@@ -154,6 +154,19 @@ class Field{
         return $input;
     }
 
+    private function generateInputSelect():string{
+        $input = '<select class="form-control" name="'.$this->getName().'" >';
+        if(isset($this->getOptions()['options'])){
+            foreach($this->getOptions()['options'] as $option){
+                $input .= '<option value="'.$option['id'].'">'.$option['intitule'].'</option>';
+            }
+        }
+        //$input .= $this->genericsAttributs();
+        $input .= '</select>';
+
+        return $input;
+    }
+
     private function generateInputText():string{
         $input = '<input type="'.$this->getType().'" name="'.$this->getName().'" class="form-control" ';
         $input .= 'value="'.$this->getValue().'" ';

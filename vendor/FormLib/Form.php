@@ -9,6 +9,7 @@ class Form{
     private ?string $action = null;
     private ?string $method = null;
     private array $fields = [];
+    private bool $stateValidation = false;
 
     public function __construct(array $options = []){
         if($options){
@@ -25,12 +26,18 @@ class Form{
     public function getFields():array{
         return $this->fields;
     }
+    public function getStateValidation():bool{
+        return $this->stateValidation;
+    }
 
     public function setAction(string $action = null):void{
         $this->action = $action;
     }
     public function setMethod(string $method = 'POST'):void{
         $this->method = $method;
+    }
+    public function setStateValidation(bool $stateValidation):void{
+        $this->stateValidation = $stateValidation;
     }
 
     public function addField(Field $field){
@@ -44,5 +51,14 @@ class Form{
         }
         $form .= '</form>';
         return $form;
+    }
+
+    public function isValid():bool{
+        foreach($this->getFields() as $field){
+            if($field->getErrorMessage() !== null){
+                return false;
+            }
+        }
+        return true;
     }
 }
